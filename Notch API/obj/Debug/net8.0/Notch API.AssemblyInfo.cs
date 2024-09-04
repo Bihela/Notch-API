@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Notch API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43decb630e0807fc302ad3b1198c42a193862ae6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+757df0d2a1bb95f556628ef545fb5d1f55e555c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Notch API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Notch API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

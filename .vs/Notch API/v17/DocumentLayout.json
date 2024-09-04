@@ -1,12 +1,141 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\bihela.wanasekara\\Documents\\Projects\\Jokes API\\ERP\\Notch API\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\models\\jobperformance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\jobperformance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\data\\employeemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\data\\employeemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\bihela.wanasekara\\documents\\bihela\\notch api\\notch-api\\notch api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Attendance.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\Attendance.cs",
+              "RelativeDocumentMoniker": "Notch API\\Models\\Attendance.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\Attendance.cs",
+              "RelativeToolTip": "Notch API\\Models\\Attendance.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T10:25:14.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "JobPerformance.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\JobPerformance.cs",
+              "RelativeDocumentMoniker": "Notch API\\Models\\JobPerformance.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\JobPerformance.cs",
+              "RelativeToolTip": "Notch API\\Models\\JobPerformance.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T10:24:50.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Notch API\\Models\\Employee.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Models\\Employee.cs",
+              "RelativeToolTip": "Notch API\\Models\\Employee.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T10:23:42.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Notch API\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Notch API\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAcwE8AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T10:32:26.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmployeeManagementContext.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Data\\EmployeeManagementContext.cs",
+              "RelativeDocumentMoniker": "Notch API\\Data\\EmployeeManagementContext.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Data\\EmployeeManagementContext.cs",
+              "RelativeToolTip": "Notch API\\Data\\EmployeeManagementContext.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAwwAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T10:29:45.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\appsettings.json",
+              "RelativeDocumentMoniker": "Notch API\\appsettings.json",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\appsettings.json",
+              "RelativeToolTip": "Notch API\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-03T10:48:22.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Program.cs",
+              "RelativeDocumentMoniker": "Notch API\\Program.cs",
+              "ToolTip": "C:\\Users\\bihela.wanasekara\\Documents\\Bihela\\Notch API\\Notch-API\\Notch API\\Program.cs",
+              "RelativeToolTip": "Notch API\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T09:56:41.893Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

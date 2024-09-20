@@ -2,91 +2,103 @@
 using Microsoft.EntityFrameworkCore;
 using Notch_API.Data;
 using Notch_API.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Notch_API.Controllers
 {
-	[ApiController]
-	[Route("api/[controller]")]
-	public class EmployeeController : ControllerBase
-	{
-		private readonly EmployeeManagementContext _context;
+    [ApiController]
+    [Route("api/[controller]")]
+    public class EmployeeController : ControllerBase
+    {
+        private readonly EmployeeManagementContext _context;
 
-		public EmployeeController(EmployeeManagementContext context)
-		{
-			_context = context;
-		}
+        public EmployeeController(EmployeeManagementContext context)
+        {
+            _context = context;
+        }
 
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
-		{
-			return await _context.Employees.ToListAsync();
-		}
+        // GET: api/Employee
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
+        {
+            var employees = await _context.Employees.ToListAsync();
+            return Ok(employees); // Wrap the result in Ok()
+        }
 
-		[HttpGet("{id}")]
-		public async Task<ActionResult<Employee>> GetEmployee(int id)
-		{
-			var employee = await _context.Employees.FindAsync(id);
 
-			if (employee == null)
-			{
-				return NotFound();
-			}
+        // GET: api/Employee/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Employee>> GetEmployee(int id)
+        {
+            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
 
-			return employee;
-		}
+            if (employee == null)
+            {
+                return NotFound();
+            }
 
-		[HttpPost]
-		public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
-		{
-			_context.Employees.Add(employee);
-			await _context.SaveChangesAsync();
+            return Ok(employee); // Explicitly returning Ok
+        }
 
-			return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
-		}
 
-		[HttpPut("{id}")]
-		public async Task<IActionResult> PutEmployee(int id, Employee employee)
-		{
-			if (id != employee.Id)
-			{
-				return BadRequest();
-			}
+        // POST: api/Employee
+        [HttpPost]
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        {
+            employee.Id = 0;  // Reset Id for new insert
 
-			_context.Entry(employee).State = EntityState.Modified;
+            _context.Employees.Add(employee);
+            await _context.SaveChangesAsync();
 
-			try
-			{
-				await _context.SaveChangesAsync();
-			}
-			catch (DbUpdateConcurrencyException)
-			{
-				if (!_context.Employees.Any(e => e.Id == id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
-			}
+            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
+        }
 
-			return NoContent();
-		}
+        // PUT: api/Employee/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutEmployee(int id, Employee employee)
+        {
+            if (id != employee.Id)
+            {
+                return BadRequest();
+            }
 
-		[HttpDelete("{id}")]
-		public async Task<IActionResult> DeleteEmployee(int id)
-		{
-			var employee = await _context.Employees.FindAsync(id);
-			if (employee == null)
-			{
-				return NotFound();
-			}
+            _context.Entry(employee).State = EntityState.Modified;
 
-			_context.Employees.Remove(employee);
-			await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Employees.Any(e => e.Id == id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-			return NoContent();
-		}
-	}
+            return NoContent();
+        }
 
+        // DELETE: api/Employee/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            _context.Employees.Remove(employee);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    }
 }

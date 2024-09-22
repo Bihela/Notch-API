@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\NotchApiTest.csproj": {}
+    "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\NotchApiTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj": {
+    "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj",
+        "projectUniqueName": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj",
         "projectName": "Notch API",
-        "projectPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj",
+        "projectPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj",
         "packagesPath": "C:\\Users\\IMAKA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\obj\\",
+        "outputPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IMAKA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -106,14 +106,14 @@
         }
       }
     },
-    "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\NotchApiTest.csproj": {
+    "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\NotchApiTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
+        "projectUniqueName": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
         "projectName": "NotchApiTest",
-        "projectPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
+        "projectPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
         "packagesPath": "C:\\Users\\IMAKA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\obj\\",
+        "outputPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IMAKA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -131,8 +131,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj": {
-                "projectPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj"
+              "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj": {
+                "projectPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj"
               }
             }
           }

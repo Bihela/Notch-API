@@ -1,5 +1,9 @@
 {
-  "ExpandedNodes": [],
-  "SelectedNode": "\\Notch API.sln",
+  "ExpandedNodes": [
+    "",
+    "\\Notch API",
+    "\\Notch API\\Controllers"
+  ],
+  "SelectedNode": "\\Notch API\\Controllers\\EmployeeController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj": {}
+    "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj": {
+    "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj",
+        "projectUniqueName": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj",
         "projectName": "Notch API",
-        "projectPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\Notch API.csproj",
+        "projectPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj",
         "packagesPath": "C:\\Users\\IMAKA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\Notch API\\obj\\",
+        "outputPath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IMAKA\\AppData\\Roaming\\NuGet\\NuGet.Config",

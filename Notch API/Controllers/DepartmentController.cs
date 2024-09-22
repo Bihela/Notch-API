@@ -50,10 +50,16 @@ namespace Notch_API.Controllers
         public async Task<ActionResult<IEnumerable<Department>>> GetDepartments()
         {
             var departments = await _context.Departments
-                .Include(d => d.Employees)
+                .Include(d => d.Employees) // Include employees if needed
                 .ToListAsync();
+
+            if (departments == null || !departments.Any())
+            {
+                return NotFound(); // Ensure it doesn't return null
+            }
 
             return Ok(departments);
         }
+
     }
 }

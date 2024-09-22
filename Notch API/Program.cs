@@ -1,10 +1,23 @@
 using Microsoft.EntityFrameworkCore;
 using Notch_API.Data;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Ignore cycles to prevent reference loop errors
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+
+        // Use camelCase naming convention for JSON properties
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+        // Optionally enable indented JSON (pretty print)
+        // options.JsonSerializerOptions.WriteIndented = true;
+    });
 
 // Add the DbContext to the services collection
 builder.Services.AddDbContext<EmployeeManagementContext>(options =>

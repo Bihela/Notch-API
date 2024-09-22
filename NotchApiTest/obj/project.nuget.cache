@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "05dK/+aphMg=",
+  "dgSpecHash": "pZnaE8BpX9g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\IMAKA\\Desktop\\bihela\\Notch\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
+  "projectFilePath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\NotchApiTest\\NotchApiTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IMAKA\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

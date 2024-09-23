@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\controllers\\departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\controllers\\departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,34 +34,86 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeControllerTests.cs",
+              "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",
+              "RelativeDocumentMoniker": "NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",
+              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",
+              "RelativeToolTip": "NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwCQAAACBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:59:29.533Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Department.cs",
+              "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Models\\Department.cs",
+              "RelativeDocumentMoniker": "Notch API\\Models\\Department.cs",
+              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Models\\Department.cs",
+              "RelativeToolTip": "Notch API\\Models\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:49:38.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Notch API\\Models\\Employee.cs",
+              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Models\\Employee.cs",
+              "RelativeToolTip": "Notch API\\Models\\Employee.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAcwCcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:42:08.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Notch API\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Notch API\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T17:42:05.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DepartmentController.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\DepartmentController.cs",
               "RelativeDocumentMoniker": "Notch API\\Controllers\\DepartmentController.cs",
               "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\DepartmentController.cs",
               "RelativeToolTip": "Notch API\\Controllers\\DepartmentController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAADgAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-22T17:02:11.978Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "DepartmentControllerTests.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
               "RelativeDocumentMoniker": "NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
-              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs*",
-              "RelativeToolTip": "NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs*",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAUwI8AAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
+              "RelativeToolTip": "NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-22T13:27:13.667Z",
               "EditorCaption": ""

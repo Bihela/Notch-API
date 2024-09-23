@@ -23,7 +23,7 @@ namespace Notch_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
-            var employees = await _context.Employees.ToListAsync();
+            var employees = await _context.Employees.Include(e => e.Department).ToListAsync();
             return Ok(employees); // Wrap the result in Ok()
         }
 

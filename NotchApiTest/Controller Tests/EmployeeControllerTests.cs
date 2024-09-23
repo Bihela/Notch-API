@@ -22,15 +22,23 @@ namespace NotchApiTest.ControllerTests
         }
 
         [Test]
-        public async Task GetEmployees_ReturnsListOfEmployees()
+        public async Task GetEmployees_ReturnsListOfEmployees_WithDepartmentNames()
         {
             // Arrange
+            var departments = new List<Department>
+    {
+        new Department { DepartmentId = 1, DepartmentName = "Development" },
+        new Department { DepartmentId = 2, DepartmentName = "Management" }
+    };
+
             var employees = new List<Employee>
-            {
-                new Employee { Id = 1, Name = "John Doe", Position = "Developer", DepartmentID = 1, EmailAddress = "john.doe@example.com", PhoneNumber = "1234567890" },
-                new Employee { Id = 2, Name = "Jane Smith", Position = "Manager", DepartmentID = 2, EmailAddress = "jane.smith@example.com", PhoneNumber = "0987654321" }
-            };
+    {
+        new Employee { Id = 1, Name = "John Doe", Position = "Developer", DepartmentID = 1, EmailAddress = "john.doe@example.com", PhoneNumber = "1234567890" },
+        new Employee { Id = 2, Name = "Jane Smith", Position = "Manager", DepartmentID = 2, EmailAddress = "jane.smith@example.com", PhoneNumber = "0987654321" }
+    };
+
             var context = CreateNewContext();
+            context.Departments.AddRange(departments);
             context.Employees.AddRange(employees);
             context.SaveChanges();
 
@@ -45,7 +53,13 @@ namespace NotchApiTest.ControllerTests
             Assert.IsNotNull(okResult);
             var returnedEmployees = okResult.Value as IEnumerable<Employee>;
             Assert.AreEqual(2, returnedEmployees.Count());
+
+            // Check if DepartmentName is correctly set
+            var employeeList = returnedEmployees.ToList();
+            Assert.AreEqual("Development", employeeList[0].DepartmentName);
+            Assert.AreEqual("Management", employeeList[1].DepartmentName);
         }
+
 
         [Test]
         public async Task GetEmployee_ReturnsEmployeeById()

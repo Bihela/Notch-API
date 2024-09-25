@@ -32,15 +32,19 @@ namespace Notch_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var employee = await _context.Employees.FirstOrDefaultAsync(e => e.Id == id);
+            // Include the Department when fetching the employee to access DepartmentName
+            var employee = await _context.Employees
+                .Include(e => e.Department) // Include the Department entity
+                .FirstOrDefaultAsync(e => e.Id == id);
 
             if (employee == null)
             {
                 return NotFound();
             }
 
-            return Ok(employee); // Explicitly returning Ok
+            return Ok(employee); // The DepartmentName will be included as part of the response
         }
+
 
 
         // POST: api/Employee

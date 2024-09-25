@@ -65,6 +65,12 @@ namespace NotchApiTest.ControllerTests
         public async Task GetEmployee_ReturnsEmployeeById()
         {
             // Arrange
+            var department = new Department
+            {
+                DepartmentId = 1,
+                DepartmentName = "IT Department"
+            };
+
             var employee = new Employee
             {
                 Id = 1,
@@ -76,6 +82,9 @@ namespace NotchApiTest.ControllerTests
             };
 
             var context = CreateNewContext();
+
+            // Add the department to the context first
+            context.Departments.Add(department);
             context.Employees.Add(employee);
             await context.SaveChangesAsync(); // Ensure changes are saved asynchronously
 
@@ -86,12 +95,18 @@ namespace NotchApiTest.ControllerTests
 
             // Assert
             Assert.IsInstanceOf<ActionResult<Employee>>(result);
+
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult); // Ensure the result is not null
+
             var returnedEmployee = okResult.Value as Employee;
             Assert.IsNotNull(returnedEmployee); // Check if it's not null
             Assert.AreEqual(employee.Id, returnedEmployee.Id); // Ensure the returned ID matches
+            Assert.AreEqual(employee.Name, returnedEmployee.Name); // Ensure the returned name matches
+            Assert.AreEqual(employee.Position, returnedEmployee.Position); // Ensure the position matches
+            Assert.AreEqual(department.DepartmentName, returnedEmployee.DepartmentName); // Check the DepartmentName matches
         }
+
 
 
         [Test]

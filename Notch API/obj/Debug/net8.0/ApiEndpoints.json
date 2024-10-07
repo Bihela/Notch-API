@@ -27,6 +27,32 @@
   },
   {
     "ContainingType": "Notch_API.Controllers.AttendanceController",
+    "Method": "GetAttendanceByDate",
+    "RelativePath": "api/Attendance/ByDate/{date}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Notch_API.Models.Attendance, Notch API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Notch_API.Controllers.AttendanceController",
     "Method": "SetAttendanceStatus",
     "RelativePath": "api/Attendance/SetStatus",
     "HttpMethod": "POST",

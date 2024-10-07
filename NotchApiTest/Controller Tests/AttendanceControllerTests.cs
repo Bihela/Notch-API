@@ -5,7 +5,6 @@ using Notch_API.Controllers;
 using Notch_API.Data;
 using Notch_API.Models;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -104,7 +103,6 @@ namespace NotchApiTest.ControllerTests
             Assert.AreEqual("Employee has already been marked as 'Present' today.", badRequestResult.Value);
         }
 
-
         [Test]
         public async Task GetAttendance_ReturnsAttendanceById()
         {
@@ -133,31 +131,18 @@ namespace NotchApiTest.ControllerTests
             context.Attendances.Add(attendance);
             await context.SaveChangesAsync(); // Save to generate ID
 
-            // Assert the attendance ID was generated
-            Assert.IsTrue(attendance.Id > 0, "Attendance ID should be generated.");
-
-            // Log current attendances
-            var allAttendances = await context.Attendances.ToListAsync();
-            Console.WriteLine("Current Attendances in Context:");
-            foreach (var att in allAttendances)
-            {
-                Console.WriteLine($"Attendance ID: {att.Id}, Employee ID: {att.EmployeeId}, Status: {att.Status}");
-            }
-
             // Act
             var controller = new AttendanceController(context);
-            Console.WriteLine($"Attempting to retrieve attendance with ID: {attendance.Id}");
-            var result = await controller.GetAttendance(attendance.Id); // Use the actual saved ID
+            var result = await controller.GetAttendance(attendance.Id);
 
             // Assert
             Assert.IsInstanceOf<ActionResult<Attendance>>(result);
 
             var okResult = result.Result as OkObjectResult;
-            Assert.IsNotNull(okResult, "Result should be OkObjectResult");
+            Assert.IsNotNull(okResult);
 
             var returnedAttendance = okResult.Value as Attendance;
-            Assert.IsNotNull(returnedAttendance, "Returned attendance should not be null");
-            Assert.AreEqual(attendance.Id, returnedAttendance.Id, "Returned attendance ID should match the saved ID.");
+            Assert.AreEqual(attendance.Id, returnedAttendance.Id);
         }
 
         [Test]
@@ -183,10 +168,10 @@ namespace NotchApiTest.ControllerTests
             };
 
             var attendances = new List<Attendance>
-    {
-        new Attendance { EmployeeId = employee1.Id, Status = "Present", Date = DateTime.Today, InTime = DateTime.Now },
-        new Attendance { EmployeeId = employee2.Id, Status = "Leave", Date = DateTime.Today }
-    };
+            {
+                new Attendance { EmployeeId = employee1.Id, Status = "Present", Date = DateTime.Today, InTime = DateTime.Now },
+                new Attendance { EmployeeId = employee2.Id, Status = "Leave", Date = DateTime.Today }
+            };
 
             var context = CreateNewContext();
             context.Employees.AddRange(employee1, employee2);
@@ -279,21 +264,66 @@ namespace NotchApiTest.ControllerTests
             // Act
             var result = await controller.SetAttendanceStatus(newAttendance);
 
-            // Debugging information
-            Console.WriteLine($"Result: {result.Result}");
-
             // Assert
             Assert.IsInstanceOf<ActionResult<Attendance>>(result);
             var createdResult = result.Result as CreatedAtActionResult;
-            Assert.IsNotNull(createdResult, "Expected a CreatedAtActionResult.");
+            Assert.IsNotNull(createdResult);
 
             var createdAttendance = createdResult.Value as Attendance;
-            Assert.IsNotNull(createdAttendance, "Returned attendance should not be null.");
-            Assert.AreEqual(newAttendance.EmployeeId, createdAttendance.EmployeeId, "Employee IDs should match.");
-            Assert.AreEqual("Present", createdAttendance.Status, "Status should be 'Present'.");
-            Assert.AreEqual(false, createdAttendance.IsLate, "Attendance should not be marked as late.");
-            Assert.AreEqual(newAttendance.InTime, createdAttendance.InTime, "InTime should match the input InTime.");
+            Assert.AreEqual(newAttendance.EmployeeId, createdAttendance.EmployeeId);
+            Assert.AreEqual("Present", createdAttendance.Status);
+            Assert.AreEqual(false, createdAttendance.IsLate); // Check if not marked as late
+            Assert.AreEqual(newAttendance.InTime, createdAttendance.InTime); // Ensure the InTime is correct
         }
 
+        // Test for GetAttendanceByDate
+        [Test]
+        public async Task GetAttendanceByDate_ReturnsAttendanceListForSpecificDate()
+        {
+            // Arrange
+            var employee1 = new Employee
+            {
+                Id = 1,
+                Name = "John Doe",
+                EmailAddress = "john.doe@example.com",
+                PhoneNumber = "1234567890",
+                Position = "Developer"
+            };
+
+            var employee2 = new Employee
+            {
+                Id = 2,
+                Name = "Jane Doe",
+                EmailAddress = "jane.doe@example.com",
+                PhoneNumber = "0987654321",
+                Position = "Manager"
+            };
+
+            var specificDate = new DateTime(2024, 10, 5); // The date we are testing
+
+            var attendances = new List<Attendance>
+            {
+                new Attendance { EmployeeId = employee1.Id, Status = "Present", Date = specificDate, InTime = specificDate.AddHours(8) },
+                new Attendance { EmployeeId = employee2.Id, Status = "Leave", Date = specificDate }
+            };
+
+            var context = CreateNewContext();
+            context.Employees.AddRange(employee1, employee2);
+            context.Attendances.AddRange(attendances);
+            await context.SaveChangesAsync();
+
+            var controller = new AttendanceController(context);
+
+            // Act
+            var result = await controller.GetAttendanceByDate(specificDate);
+
+            // Assert
+            Assert.IsInstanceOf<ActionResult<IEnumerable<Attendance>>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+
+            var returnedAttendanceList = okResult.Value as IEnumerable<Attendance>;
+            Assert.AreEqual(2, returnedAttendanceList.Count()); // Ensure we got 2 attendances for the specific date
+        }
     }
 }

@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\attendancecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\attendancecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\models\\attendance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\departmentcontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|solutionrelative:notch api\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8685236-D640-4F07-A2AB-84E9728A1AA5}|NotchApiTest\\NotchApiTest.csproj|solutionrelative:notchapitest\\controller tests\\employeecontrollertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}|Notch API\\Notch API.csproj|c:\\users\\imaka\\source\\repos\\bihela\\notch-api\\notch api\\configurations\\departmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,32 +78,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AttendanceControllerTests.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\AttendanceControllerTests.cs",
               "RelativeDocumentMoniker": "NotchApiTest\\Controller Tests\\AttendanceControllerTests.cs",
               "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\AttendanceControllerTests.cs",
               "RelativeToolTip": "NotchApiTest\\Controller Tests\\AttendanceControllerTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowEkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-07T05:30:46.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "AttendanceController.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\AttendanceController.cs",
               "RelativeDocumentMoniker": "Notch API\\Controllers\\AttendanceController.cs",
               "ToolTip": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\Notch API\\Controllers\\AttendanceController.cs",
               "RelativeToolTip": "Notch API\\Controllers\\AttendanceController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAowI0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T05:59:04.827Z"
+              "WhenOpened": "2024-09-26T05:59:04.827Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DepartmentControllerTests.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
               "RelativeDocumentMoniker": "NotchApiTest\\Controller Tests\\DepartmentControllerTests.cs",
@@ -116,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "EmployeeControllerTests.cs",
               "DocumentMoniker": "C:\\Users\\IMAKA\\source\\repos\\Bihela\\Notch-API\\NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",
               "RelativeDocumentMoniker": "NotchApiTest\\Controller Tests\\EmployeeControllerTests.cs",

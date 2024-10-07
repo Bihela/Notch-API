@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NotchApiTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9c1a346e89195e42095a4e1dc3bd3813a964f1a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0ac25fb2e75b3f9e35a80cd04362b165b164500")]
 [assembly: System.Reflection.AssemblyProductAttribute("NotchApiTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NotchApiTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

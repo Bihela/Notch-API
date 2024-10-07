@@ -135,5 +135,22 @@ namespace Notch_API.Controllers
 
             return Ok(todayAttendance);
         }
+
+        // GET: api/Attendance/ByDate/{date}
+        [HttpGet("ByDate/{date}")]
+        public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendanceByDate(DateTime date)
+        {
+            var attendanceList = await _context.Attendances
+                .Where(a => a.Date.Date == date.Date)
+                .ToListAsync();
+
+            if (attendanceList == null || attendanceList.Count == 0)
+            {
+                return NotFound($"No attendance records found for {date.ToShortDateString()}.");
+            }
+
+            return Ok(attendanceList);
+        }
+
     }
 }

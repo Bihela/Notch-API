@@ -129,28 +129,74 @@ namespace Notch_API.Controllers
         [HttpGet("Today")]
         public async Task<ActionResult<IEnumerable<Attendance>>> GetTodayAttendance()
         {
+            // Get all employees
+            var employees = await _context.Employees.ToListAsync();
+
+            // Get today's attendance records
             var todayAttendance = await _context.Attendances
                 .Where(a => a.Date.Date == DateTime.Today)
                 .ToListAsync();
 
-            return Ok(todayAttendance);
+            // Combine results
+            var result = employees.Select(employee =>
+            {
+                var attendance = todayAttendance.FirstOrDefault(a => a.EmployeeId == employee.Id && a.Date.Date == DateTime.Today);
+                if (attendance != null)
+                {
+                    return attendance; // Return existing attendance if found
+                }
+
+                // If no attendance found, return a new attendance record with default status
+                return new Attendance
+                {
+                    EmployeeId = employee.Id,
+                    Date = DateTime.Today,
+                    Status = "Need to Attend", // Default status for employees without attendance
+                    InTime = default, // Default value
+                    OutTime = default, // Default value
+                    IsLate = false // Default value
+                };
+            }).ToList();
+
+            return Ok(result);
         }
 
         // GET: api/Attendance/ByDate/{date}
         [HttpGet("ByDate/{date}")]
         public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendanceByDate(DateTime date)
         {
+            // Get all employees
+            var employees = await _context.Employees.ToListAsync();
+
+            // Get attendance records for the specified date
             var attendanceList = await _context.Attendances
                 .Where(a => a.Date.Date == date.Date)
                 .ToListAsync();
 
-            if (attendanceList == null || attendanceList.Count == 0)
+            // Combine results
+            var result = employees.Select(employee =>
             {
-                return NotFound($"No attendance records found for {date.ToShortDateString()}.");
-            }
+                var attendance = attendanceList.FirstOrDefault(a => a.EmployeeId == employee.Id && a.Date.Date == date.Date);
+                if (attendance != null)
+                {
+                    return attendance; // Return existing attendance if found
+                }
 
-            return Ok(attendanceList);
+                // If no attendance found, return a new attendance record with default status
+                return new Attendance
+                {
+                    EmployeeId = employee.Id,
+                    Date = date,
+                    Status = "Need to Attend", // Default status for employees without attendance
+                    InTime = default, // Default value
+                    OutTime = default, // Default value
+                    IsLate = false // Default value
+                };
+            }).ToList();
+
+            return Ok(result);
         }
+
 
     }
 }

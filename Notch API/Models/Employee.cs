@@ -35,5 +35,5 @@ public class Employee
 
     // New property for Department Name
     [NotMapped] // Prevents it from being mapped to the database
-    public string DepartmentName => Department?.DepartmentName; // Automatically retrieves the department name
+    public string? DepartmentName => Department?.DepartmentName; // Automatically retrieves the department name
 }

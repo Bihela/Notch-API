@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notch API", "Notch API\Notch API.csproj", "{3E1E91EB-9A49-457E-84AA-6E1CC49589C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotchApiTest", "NotchApiTest\NotchApiTest.csproj", "{D8685236-D640-4F07-A2AB-84E9728A1AA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotchApiTest", "NotchApiTest\NotchApiTest.csproj", "{D8685236-D640-4F07-A2AB-84E9728A1AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

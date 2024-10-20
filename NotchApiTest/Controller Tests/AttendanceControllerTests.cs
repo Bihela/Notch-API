@@ -1,13 +1,15 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Notch_API.Controllers;
-using Notch_API.Data;
-using Notch_API.Models;
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using NUnit.Framework;
+using Notch_API.Controllers;
+using Notch_API.Data;
+using Notch_API.Models;
+using FluentValidation;
 
 namespace NotchApiTest.ControllerTests
 {
@@ -38,7 +40,11 @@ namespace NotchApiTest.ControllerTests
             context.Employees.Add(employee);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             var newAttendance = new Attendance
             {
@@ -79,7 +85,11 @@ namespace NotchApiTest.ControllerTests
             context.Employees.Add(employee);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             // First attendance marked as "Present"
             var firstAttendance = new Attendance
@@ -131,8 +141,12 @@ namespace NotchApiTest.ControllerTests
             context.Attendances.Add(attendance);
             await context.SaveChangesAsync(); // Save to generate ID
 
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
             // Act
-            var controller = new AttendanceController(context);
+            var controller = new AttendanceController(context, mockValidator.Object);
             var result = await controller.GetAttendance(attendance.Id);
 
             // Assert
@@ -178,7 +192,11 @@ namespace NotchApiTest.ControllerTests
             context.Attendances.AddRange(attendances);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             // Act
             var result = await controller.GetTodayAttendance();
@@ -209,7 +227,11 @@ namespace NotchApiTest.ControllerTests
             context.Employees.Add(employee);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             // Simulate a late InTime (e.g., 9:00 AM)
             var newAttendance = new Attendance
@@ -251,7 +273,11 @@ namespace NotchApiTest.ControllerTests
             context.Employees.Add(employee);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             // Simulate an on-time InTime (e.g., 8:00 AM)
             var newAttendance = new Attendance
@@ -276,7 +302,6 @@ namespace NotchApiTest.ControllerTests
             Assert.AreEqual(newAttendance.InTime, createdAttendance.InTime); // Ensure the InTime is correct
         }
 
-        // Test for GetAttendanceByDate
         [Test]
         public async Task GetAttendanceByDate_ReturnsAttendanceListForSpecificDate()
         {
@@ -312,7 +337,11 @@ namespace NotchApiTest.ControllerTests
             context.Attendances.AddRange(attendances);
             await context.SaveChangesAsync();
 
-            var controller = new AttendanceController(context);
+            var mockValidator = new Mock<IValidator<Attendance>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Attendance>(), default))
+                         .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+
+            var controller = new AttendanceController(context, mockValidator.Object);
 
             // Act
             var result = await controller.GetAttendanceByDate(specificDate);

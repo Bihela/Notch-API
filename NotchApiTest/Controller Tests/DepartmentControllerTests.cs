@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.Results; // Add this directive for ValidationResult
+using Moq; // Add this using directive
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Notch_API.Controllers;
 using Notch_API.Data;
@@ -16,6 +19,7 @@ namespace NotchApiTest.ControllerTests
         private DepartmentController _controller;
         private EmployeeManagementContext _context;
         private DbContextOptions<EmployeeManagementContext> _options;
+        private Mock<IValidator<Department>> _departmentValidatorMock; // Mock for the validator
 
         [SetUp]
         public void Setup()
@@ -26,7 +30,8 @@ namespace NotchApiTest.ControllerTests
                 .Options;
 
             _context = new EmployeeManagementContext(_options);
-            _controller = new DepartmentController(_context);
+            _departmentValidatorMock = new Mock<IValidator<Department>>(); // Initialize the mock
+            _controller = new DepartmentController(_context, _departmentValidatorMock.Object); // Inject the mock
         }
 
         [TearDown]
@@ -45,6 +50,11 @@ namespace NotchApiTest.ControllerTests
                 DepartmentName = "HR",
                 ManagerId = 1
             };
+
+            // Setup the mock validator to return valid results
+            _departmentValidatorMock
+                .Setup(v => v.ValidateAsync(department, default))
+                .ReturnsAsync(new ValidationResult()); // Ensure this matches the type used in your validator
 
             // Act
             var result = await _controller.PostDepartment(department);
@@ -99,51 +109,46 @@ namespace NotchApiTest.ControllerTests
         {
             // Arrange
             var departments = new List<Department>
-        {
-            new Department
             {
-                DepartmentId = 1,
-                DepartmentName = "HR",
-                ManagerId = 1,
-                Employees = new List<Employee>
+                new Department
                 {
-                    new Employee { Id = 1006, Name = "Jack Maggio", Position = "Software Engineer", DateOfJoining = DateTime.Now, EmailAddress = "Aida_Walker@yahoo.com", PhoneNumber = "956-444-6116" },
-                    new Employee { Id = 1007, Name = "Opal Bahringer", Position = "Software Engineer", DateOfJoining = DateTime.Now, EmailAddress = "Cristian_Kassulke25@yahoo.com", PhoneNumber = "698-362-1493" }
+                    DepartmentId = 1,
+                    DepartmentName = "HR",
+                    ManagerId = 1,
+                    Employees = new List<Employee>
+                    {
+                        new Employee { Id = 1006, Name = "Jack Maggio", Position = "Software Engineer", DateOfJoining = DateTime.Now, EmailAddress = "Aida_Walker@yahoo.com", PhoneNumber = "956-444-6116" },
+                        new Employee { Id = 1007, Name = "Opal Bahringer", Position = "Software Engineer", DateOfJoining = DateTime.Now, EmailAddress = "Cristian_Kassulke25@yahoo.com", PhoneNumber = "698-362-1493" }
+                    }
+                },
+                new Department
+                {
+                    DepartmentId = 2,
+                    DepartmentName = "IT",
+                    ManagerId = 2
                 }
-            },
-            new Department
-            {
-                DepartmentId = 2,
-                DepartmentName = "IT",
-                ManagerId = 2
-            }
-        };
+            };
 
             _context.Departments.AddRange(departments);
             await _context.SaveChangesAsync();
 
-            Console.WriteLine($"Departments in context: {_context.Departments.Count()}");
-
             // Act
             var result = await _controller.GetDepartments();
-            Console.WriteLine($"Result: {result.Result}"); // Log the result
 
             // Assert
-            Assert.IsInstanceOf<OkObjectResult>(result.Result); // Check if the result is OkObjectResult
+            Assert.IsInstanceOf<OkObjectResult>(result.Result);
             var okResult = result.Result as OkObjectResult;
-            Assert.IsNotNull(okResult); // Check if OkObjectResult is not null
+            Assert.IsNotNull(okResult);
 
             var returnValue = okResult.Value as IEnumerable<Department>;
-            Assert.IsNotNull(returnValue); // Ensure returnValue is not null
-            Assert.AreEqual(2, returnValue.Count()); // Expecting 2 departments
+            Assert.IsNotNull(returnValue);
+            Assert.AreEqual(2, returnValue.Count());
 
-            // Check the employees count in the first department
             var hrDepartment = returnValue.First(d => d.DepartmentId == 1);
-            Assert.AreEqual(2, hrDepartment.Employees.Count); // Expecting 2 employees
+            Assert.AreEqual(2, hrDepartment.Employees.Count);
 
             var itDepartment = returnValue.First(d => d.DepartmentId == 2);
-            Assert.AreEqual(0, itDepartment.Employees.Count); // Expecting 0 employees
+            Assert.AreEqual(0, itDepartment.Employees.Count);
         }
     }
-
 }

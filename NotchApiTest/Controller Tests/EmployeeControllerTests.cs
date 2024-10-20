@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Notch_API.Controllers;
 using Notch_API.Data;
 using Notch_API.Models;
+using FluentValidation;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,28 +23,38 @@ namespace NotchApiTest.ControllerTests
             return new EmployeeManagementContext(options);
         }
 
+        private IValidator<Employee> CreateMockValidator()
+        {
+            var mockValidator = new Mock<IValidator<Employee>>();
+            mockValidator.Setup(v => v.ValidateAsync(It.IsAny<Employee>(), default))
+                .ReturnsAsync(new FluentValidation.Results.ValidationResult());
+            return mockValidator.Object;
+        }
+
+
         [Test]
         public async Task GetEmployees_ReturnsListOfEmployees_WithDepartmentNames()
         {
             // Arrange
             var departments = new List<Department>
-    {
-        new Department { DepartmentId = 1, DepartmentName = "Development" },
-        new Department { DepartmentId = 2, DepartmentName = "Management" }
-    };
+            {
+                new Department { DepartmentId = 1, DepartmentName = "Development" },
+                new Department { DepartmentId = 2, DepartmentName = "Management" }
+            };
 
             var employees = new List<Employee>
-    {
-        new Employee { Id = 1, Name = "John Doe", Position = "Developer", DepartmentID = 1, EmailAddress = "john.doe@example.com", PhoneNumber = "1234567890" },
-        new Employee { Id = 2, Name = "Jane Smith", Position = "Manager", DepartmentID = 2, EmailAddress = "jane.smith@example.com", PhoneNumber = "0987654321" }
-    };
+            {
+                new Employee { Id = 1, Name = "John Doe", Position = "Developer", DepartmentID = 1, EmailAddress = "john.doe@example.com", PhoneNumber = "1234567890" },
+                new Employee { Id = 2, Name = "Jane Smith", Position = "Manager", DepartmentID = 2, EmailAddress = "jane.smith@example.com", PhoneNumber = "0987654321" }
+            };
 
             var context = CreateNewContext();
             context.Departments.AddRange(departments);
             context.Employees.AddRange(employees);
             context.SaveChanges();
 
-            var controller = new EmployeeController(context);
+            var validator = CreateMockValidator();
+            var controller = new EmployeeController(context, validator);
 
             // Act
             var result = await controller.GetEmployees();
@@ -59,7 +71,6 @@ namespace NotchApiTest.ControllerTests
             Assert.AreEqual("Development", employeeList[0].DepartmentName);
             Assert.AreEqual("Management", employeeList[1].DepartmentName);
         }
-
 
         [Test]
         public async Task GetEmployee_ReturnsEmployeeById()
@@ -82,32 +93,28 @@ namespace NotchApiTest.ControllerTests
             };
 
             var context = CreateNewContext();
-
-            // Add the department to the context first
             context.Departments.Add(department);
             context.Employees.Add(employee);
-            await context.SaveChangesAsync(); // Ensure changes are saved asynchronously
+            await context.SaveChangesAsync();
 
-            var controller = new EmployeeController(context);
+            var validator = CreateMockValidator();
+            var controller = new EmployeeController(context, validator);
 
             // Act
             var result = await controller.GetEmployee(1);
 
             // Assert
             Assert.IsInstanceOf<ActionResult<Employee>>(result);
-
             var okResult = result.Result as OkObjectResult;
-            Assert.IsNotNull(okResult); // Ensure the result is not null
+            Assert.IsNotNull(okResult);
 
             var returnedEmployee = okResult.Value as Employee;
-            Assert.IsNotNull(returnedEmployee); // Check if it's not null
-            Assert.AreEqual(employee.Id, returnedEmployee.Id); // Ensure the returned ID matches
-            Assert.AreEqual(employee.Name, returnedEmployee.Name); // Ensure the returned name matches
-            Assert.AreEqual(employee.Position, returnedEmployee.Position); // Ensure the position matches
-            Assert.AreEqual(department.DepartmentName, returnedEmployee.DepartmentName); // Check the DepartmentName matches
+            Assert.IsNotNull(returnedEmployee);
+            Assert.AreEqual(employee.Id, returnedEmployee.Id);
+            Assert.AreEqual(employee.Name, returnedEmployee.Name);
+            Assert.AreEqual(employee.Position, returnedEmployee.Position);
+            Assert.AreEqual(department.DepartmentName, returnedEmployee.DepartmentName);
         }
-
-
 
         [Test]
         public async Task PutEmployee_UpdatesExistingEmployee()
@@ -125,14 +132,14 @@ namespace NotchApiTest.ControllerTests
 
             var context = CreateNewContext();
             context.Employees.Add(employee);
-            await context.SaveChangesAsync(); // Ensure changes are saved asynchronously
+            await context.SaveChangesAsync();
 
-            var controller = new EmployeeController(context);
+            var validator = CreateMockValidator();
+            var controller = new EmployeeController(context, validator);
 
-            // Create an updated employee with the same Id
             var updatedEmployee = new Employee
             {
-                Id = 1, // Keep the same ID
+                Id = 1,
                 Name = "John Doe Updated",
                 Position = "Senior Developer",
                 DepartmentID = 1,
@@ -140,7 +147,6 @@ namespace NotchApiTest.ControllerTests
                 PhoneNumber = "1234567890"
             };
 
-            // Detach the existing employee before updating
             var existingEmployee = await context.Employees.FindAsync(1);
             context.Entry(existingEmployee).State = EntityState.Detached;
 
@@ -150,8 +156,8 @@ namespace NotchApiTest.ControllerTests
             // Assert
             Assert.IsInstanceOf<NoContentResult>(result);
             var dbEmployee = await context.Employees.FindAsync(1);
-            Assert.IsNotNull(dbEmployee); // Ensure the employee was updated in the database
-            Assert.AreEqual(updatedEmployee.Name, dbEmployee.Name); // Check updated value
+            Assert.IsNotNull(dbEmployee);
+            Assert.AreEqual(updatedEmployee.Name, dbEmployee.Name);
         }
 
         [Test]
@@ -159,7 +165,8 @@ namespace NotchApiTest.ControllerTests
         {
             // Arrange
             var context = CreateNewContext();
-            var controller = new EmployeeController(context);
+            var validator = CreateMockValidator();
+            var controller = new EmployeeController(context, validator);
 
             var newEmployee = new Employee
             {
@@ -191,7 +198,8 @@ namespace NotchApiTest.ControllerTests
             context.Employees.Add(employee);
             context.SaveChanges();
 
-            var controller = new EmployeeController(context);
+            var validator = CreateMockValidator();
+            var controller = new EmployeeController(context, validator);
 
             // Act
             var result = await controller.DeleteEmployee(1);

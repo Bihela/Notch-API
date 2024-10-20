@@ -279,6 +279,110 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Notch_API.Controllers.LeaveRequestController",
+    "Method": "GetLeaveRequest",
+    "RelativePath": "api/LeaveRequest/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Notch_API.Models.LeaveRequest",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Notch_API.Controllers.LeaveRequestController",
+    "Method": "AllLeaveRequests",
+    "RelativePath": "api/LeaveRequest/AllLeaveRequests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Notch_API.Models.LeaveRequest, Notch API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Notch_API.Controllers.LeaveRequestController",
+    "Method": "ApproveLeave",
+    "RelativePath": "api/LeaveRequest/ApproveLeave/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Notch_API.Controllers.LeaveRequestController",
+    "Method": "RejectLeave",
+    "RelativePath": "api/LeaveRequest/RejectLeave/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Notch_API.Controllers.LeaveRequestController",
+    "Method": "RequestLeave",
+    "RelativePath": "api/LeaveRequest/RequestLeave",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "leaveRequest",
+        "Type": "Notch_API.Models.LeaveRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Notch_API.Models.LeaveRequest",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Notch_API.Controllers.SalaryController",
     "Method": "PostSalary",
     "RelativePath": "api/Salary",

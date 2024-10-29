@@ -74,11 +74,27 @@ namespace Notch_API.Controllers
         }
 
         [HttpGet("AllLeaveRequests")]
-        public async Task<ActionResult<IEnumerable<LeaveRequest>>> AllLeaveRequests()
+        public async Task<ActionResult<IEnumerable<object>>> AllLeaveRequests()
         {
-            var leaveRequests = await _context.LeaveRequests.ToListAsync();
+            var leaveRequests = await _context.LeaveRequests
+                .Include(lr => lr.Employee) // Ensure the related Employee data is included
+                .Select(lr => new
+                {
+                    lr.Id,
+                    lr.EmployeeId,
+                    EmployeeName = lr.Employee.Name, // Fetch employee name
+                    lr.StartDate,
+                    lr.EndDate,
+                    lr.Reason,
+                    lr.LeaveType,
+                    lr.Status
+                })
+                .ToListAsync();
+
             return Ok(leaveRequests);
         }
+
+
 
         [HttpPost("ApproveLeave/{id}")]
         public async Task<IActionResult> ApproveLeave(int id)
@@ -113,5 +129,72 @@ namespace Notch_API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("ApprovedLeaveRequests")]
+        public async Task<ActionResult<IEnumerable<object>>> GetApprovedLeaveRequests()
+        {
+            var approvedLeaveRequests = await _context.LeaveRequests
+                .Where(lr => lr.Status == LeaveStatus.Approved)
+                .Include(lr => lr.Employee)
+                .Select(lr => new
+                {
+                    lr.Id,
+                    lr.EmployeeId,
+                    EmployeeName = lr.Employee.Name,
+                    lr.StartDate,
+                    lr.EndDate,
+                    lr.Reason,
+                    lr.LeaveType,
+                    lr.Status
+                })
+                .ToListAsync();
+
+            return Ok(approvedLeaveRequests);
+        }
+
+        [HttpGet("PendingLeaveRequests")]
+        public async Task<ActionResult<IEnumerable<object>>> GetPendingLeaveRequests()
+        {
+            var pendingLeaveRequests = await _context.LeaveRequests
+                .Where(lr => lr.Status == LeaveStatus.Pending)
+                .Include(lr => lr.Employee)
+                .Select(lr => new
+                {
+                    lr.Id,
+                    lr.EmployeeId,
+                    EmployeeName = lr.Employee.Name,
+                    lr.StartDate,
+                    lr.EndDate,
+                    lr.Reason,
+                    lr.LeaveType,
+                    lr.Status
+                })
+                .ToListAsync();
+
+            return Ok(pendingLeaveRequests);
+        }
+
+        [HttpGet("RejectedLeaveRequests")]
+        public async Task<ActionResult<IEnumerable<object>>> GetRejectedLeaveRequests()
+        {
+            var rejectedLeaveRequests = await _context.LeaveRequests
+                .Where(lr => lr.Status == LeaveStatus.Rejected)
+                .Include(lr => lr.Employee)
+                .Select(lr => new
+                {
+                    lr.Id,
+                    lr.EmployeeId,
+                    EmployeeName = lr.Employee.Name,
+                    lr.StartDate,
+                    lr.EndDate,
+                    lr.Reason,
+                    lr.LeaveType,
+                    lr.Status
+                })
+                .ToListAsync();
+
+            return Ok(rejectedLeaveRequests);
+        }
+
     }
 }

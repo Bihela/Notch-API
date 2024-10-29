@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Notch_API.Data;
+using FluentValidation;
+using Notch_API.Models;
+using Notch_API.Validators;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -15,9 +18,15 @@ builder.Services.AddControllers()
         // Use camelCase naming convention for JSON properties
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 
-        // Optionally enable indented JSON (pretty print)
-        // options.JsonSerializerOptions.WriteIndented = true;
+        // Add JSON options for enum serialization
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
+
+// Register validators for dependency injection
+builder.Services.AddTransient<IValidator<Employee>, EmployeeValidator>();
+builder.Services.AddTransient<IValidator<Department>, DepartmentValidator>();
+builder.Services.AddTransient<IValidator<Attendance>, AttendanceValidator>();
+builder.Services.AddTransient<IValidator<LeaveRequest>, LeaveRequestValidator>(); // Register LeaveRequestValidator
 
 // Add the DbContext to the services collection
 builder.Services.AddDbContext<EmployeeManagementContext>(options =>
@@ -36,7 +45,7 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Configure Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

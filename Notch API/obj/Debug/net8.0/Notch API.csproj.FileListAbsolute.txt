@@ -418,3 +418,4 @@ C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\Notch API\obj\Debug\net8.0\refint\N
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\Notch API\obj\Debug\net8.0\Notch API.pdb
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\Notch API\obj\Debug\net8.0\Notch API.genruntimeconfig.cache
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\Notch API\obj\Debug\net8.0\ref\Notch API.dll
+C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\Notch API\bin\Debug\net8.0\FluentValidation.dll

@@ -304,3 +304,4 @@ C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\NotchApiTest\obj\Debug\net8.0\refin
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\NotchApiTest\obj\Debug\net8.0\NotchApiTest.pdb
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\NotchApiTest\obj\Debug\net8.0\NotchApiTest.genruntimeconfig.cache
 C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\NotchApiTest\obj\Debug\net8.0\ref\NotchApiTest.dll
+C:\Users\IMAKA\Source\Repos\Bihela\Notch-API\NotchApiTest\bin\Debug\net8.0\FluentValidation.dll

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Notch_API.Data;
 using Notch_API.Models;
+using FluentValidation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,16 +13,24 @@ namespace Notch_API.Controllers
     public class DepartmentController : ControllerBase
     {
         private readonly EmployeeManagementContext _context;
+        private readonly IValidator<Department> _departmentValidator;
 
-        public DepartmentController(EmployeeManagementContext context)
+        public DepartmentController(EmployeeManagementContext context, IValidator<Department> departmentValidator)
         {
             _context = context;
+            _departmentValidator = departmentValidator;
         }
 
         // POST: api/Department
         [HttpPost]
         public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
+            var validationResult = await _departmentValidator.ValidateAsync(department);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
             department.Employees = department.Employees ?? new List<Employee>(); // Ensure employees list is not null
             _context.Departments.Add(department);
             await _context.SaveChangesAsync();
@@ -60,6 +69,5 @@ namespace Notch_API.Controllers
 
             return Ok(departments);
         }
-
     }
 }

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Zhxpl0H9l2M=",
+  "dgSpecHash": "J5ShABgGti8=",
   "success": true,
   "projectFilePath": "C:\\Users\\IMAKA\\Source\\Repos\\Bihela\\Notch-API\\Notch API\\Notch API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IMAKA\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
+    "C:\\Users\\IMAKA\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\IMAKA\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

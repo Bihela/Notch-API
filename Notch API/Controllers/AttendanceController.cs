@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Notch_API.Data;
 using Notch_API.Models;
 using System;
@@ -14,15 +15,24 @@ namespace Notch_API.Controllers
     public class AttendanceController : ControllerBase
     {
         private readonly EmployeeManagementContext _context;
+        private readonly IValidator<Attendance> _validator;
 
-        public AttendanceController(EmployeeManagementContext context)
+        public AttendanceController(EmployeeManagementContext context, IValidator<Attendance> validator)
         {
             _context = context;
+            _validator = validator;
         }
 
         [HttpPost("SetStatus")]
         public async Task<ActionResult<Attendance>> SetAttendanceStatus([FromBody] Attendance attendance)
         {
+            // Validate the attendance object
+            var validationResult = await _validator.ValidateAsync(attendance);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(e => e.ErrorMessage));
+            }
+
             // Check if employee exists
             var employeeExists = await _context.Employees.AnyAsync(e => e.Id == attendance.EmployeeId);
             if (!employeeExists)
@@ -108,8 +118,6 @@ namespace Notch_API.Controllers
             return CreatedAtAction(nameof(GetAttendance), new { id = attendance.Id }, attendance);
         }
 
-
-
         // GET: api/Attendance/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Attendance>> GetAttendance(int id)
@@ -123,7 +131,6 @@ namespace Notch_API.Controllers
 
             return Ok(attendance); // Wrap the attendance object in an Ok result for proper HTTP response.
         }
-
 
         // GET: api/Attendance/Today
         [HttpGet("Today")]
@@ -196,7 +203,5 @@ namespace Notch_API.Controllers
 
             return Ok(result);
         }
-
-
     }
 }

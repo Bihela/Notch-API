@@ -266,5 +266,188 @@ namespace NotchApiTest.ControllerTests
             Assert.AreEqual(leaveRequest.Id, returnedRequest.Id);
         }
 
+        [Test]
+        public async Task AllLeaveRequests_ReturnsAllLeaveRequests()
+        {
+            // Arrange
+            var context = CreateNewContext();
+            var employee = new Employee
+            {
+                Id = 1,
+                Name = "John Doe",
+                EmailAddress = "john.doe@example.com",
+                PhoneNumber = "1234567890",
+                Position = "Developer"
+            };
+
+            var leaveRequests = new List<LeaveRequest>
+    {
+        new LeaveRequest { EmployeeId = employee.Id, StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(1), Status = LeaveStatus.Pending, Reason = "Personal time off" },
+        new LeaveRequest { EmployeeId = employee.Id, StartDate = DateTime.Today.AddDays(2), EndDate = DateTime.Today.AddDays(3), Status = LeaveStatus.Approved, Reason = "Medical appointment" }
+    };
+
+            context.Employees.Add(employee);
+            context.LeaveRequests.AddRange(leaveRequests);
+            await context.SaveChangesAsync();
+
+            var mockValidator = new Mock<IValidator<LeaveRequest>>();
+            var controller = new LeaveRequestController(context, mockValidator.Object);
+
+            // Act
+            var result = await controller.AllLeaveRequests();
+
+            // Assert
+            Assert.IsInstanceOf<ActionResult<IEnumerable<object>>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            var returnedRequests = okResult.Value as IEnumerable<object>;
+            Assert.AreEqual(leaveRequests.Count, returnedRequests.Count());
+        }
+
+
+        [Test]
+        public async Task GetApprovedLeaveRequests_ReturnsOnlyApprovedRequests()
+        {
+            // Arrange
+            var context = CreateNewContext();
+            var employee = new Employee
+            {
+                Id = 1,
+                Name = "John Doe",
+                EmailAddress = "john.doe@example.com",
+                PhoneNumber = "1234567890",
+                Position = "Developer"
+            };
+
+            var leaveRequests = new List<LeaveRequest>
+    {
+        new LeaveRequest
+        {
+            EmployeeId = employee.Id,
+            StartDate = DateTime.Today,
+            EndDate = DateTime.Today.AddDays(1),
+            Status = LeaveStatus.Pending,
+            Reason = "Personal time off"
+        },
+        new LeaveRequest
+        {
+            EmployeeId = employee.Id,
+            StartDate = DateTime.Today.AddDays(2),
+            EndDate = DateTime.Today.AddDays(3),
+            Status = LeaveStatus.Approved,
+            Reason = "Medical appointment"
+        }
+    };
+
+            context.Employees.Add(employee);
+            context.LeaveRequests.AddRange(leaveRequests);
+            await context.SaveChangesAsync();
+
+            var mockValidator = new Mock<IValidator<LeaveRequest>>();
+            var controller = new LeaveRequestController(context, mockValidator.Object);
+
+            // Act
+            var result = await controller.GetApprovedLeaveRequests();
+
+            // Assert
+            Assert.IsInstanceOf<ActionResult<IEnumerable<object>>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            var approvedRequests = okResult.Value as IEnumerable<object>;
+            Assert.AreEqual(1, approvedRequests.Count());
+        }
+
+
+        [Test]
+        public async Task GetPendingLeaveRequests_ReturnsOnlyPendingRequests()
+        {
+            // Arrange
+            var context = CreateNewContext();
+            var employee = new Employee
+            {
+                Id = 1,
+                Name = "John Doe",
+                EmailAddress = "john.doe@example.com",
+                PhoneNumber = "1234567890",
+                Position = "Developer"
+            };
+
+            var leaveRequests = new List<LeaveRequest>
+    {
+        new LeaveRequest { EmployeeId = employee.Id, StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(1), Status = LeaveStatus.Pending, Reason = "Personal time off" },
+        new LeaveRequest { EmployeeId = employee.Id, StartDate = DateTime.Today.AddDays(2), EndDate = DateTime.Today.AddDays(3), Status = LeaveStatus.Approved, Reason = "Medical appointment" }
+    };
+
+            context.Employees.Add(employee);
+            context.LeaveRequests.AddRange(leaveRequests);
+            await context.SaveChangesAsync();
+
+            var mockValidator = new Mock<IValidator<LeaveRequest>>();
+            var controller = new LeaveRequestController(context, mockValidator.Object);
+
+            // Act
+            var result = await controller.GetPendingLeaveRequests();
+
+            // Assert
+            Assert.IsInstanceOf<ActionResult<IEnumerable<object>>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            var pendingRequests = okResult.Value as IEnumerable<object>;
+            Assert.AreEqual(1, pendingRequests.Count());
+        }
+
+
+        [Test]
+        public async Task GetRejectedLeaveRequests_ReturnsOnlyRejectedRequests()
+        {
+            // Arrange
+            var context = CreateNewContext();
+            var employee = new Employee
+            {
+                Id = 1,
+                Name = "John Doe",
+                EmailAddress = "john.doe@example.com", // Ensure this is set
+                PhoneNumber = "1234567890",          // Ensure this is set
+                Position = "Developer"                // Ensure this is set
+            };
+
+            var leaveRequests = new List<LeaveRequest>
+    {
+        new LeaveRequest
+        {
+            EmployeeId = employee.Id,
+            StartDate = DateTime.Today,
+            EndDate = DateTime.Today.AddDays(1),
+            Status = LeaveStatus.Rejected,
+            Reason = "Vacation not approved"   // Added reason for rejection
+        },
+        new LeaveRequest
+        {
+            EmployeeId = employee.Id,
+            StartDate = DateTime.Today.AddDays(2),
+            EndDate = DateTime.Today.AddDays(3),
+            Status = LeaveStatus.Approved,
+            Reason = "Medical appointment"
+        }
+    };
+
+            context.Employees.Add(employee);
+            context.LeaveRequests.AddRange(leaveRequests);
+            await context.SaveChangesAsync();
+
+            var mockValidator = new Mock<IValidator<LeaveRequest>>();
+            var controller = new LeaveRequestController(context, mockValidator.Object);
+
+            // Act
+            var result = await controller.GetRejectedLeaveRequests();
+
+            // Assert
+            Assert.IsInstanceOf<ActionResult<IEnumerable<object>>>(result);
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            var rejectedRequests = okResult.Value as IEnumerable<object>;
+            Assert.AreEqual(1, rejectedRequests.Count());
+        }
+
     }
 }

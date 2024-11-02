@@ -1,0 +1,68 @@
+name: UATNotchAPI
+
+on:
+  push:
+    branches: [ "Developement" ]
+  pull_request:
+    branches: [ "Developement" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '8.0.x' # Specify your .NET version
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests for main project
+      run: dotnet test --no-restore --verbosity normal
+
+    - name: Run tests for test project
+      run: dotnet test NotchApiTest/NotchApiTest.csproj --no-restore --verbosity normal
+
+    - name: Publish
+      run: dotnet publish --configuration Release --output ./output
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dotnet-api
+        path: ./output
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: dotnet-api
+
+    - name: Deploy to EC2
+      env:
+        EC2_HOST: ${{ secrets.EC2_HOST }}
+        EC2_USER: ${{ secrets.EC2_USER }}
+        EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }} # Consider using a secure method for Windows like WinRM
+      run: |
+        # Establish a remote session
+        $session = New-PSSession -ComputerName $env:EC2_HOST -Credential (New-Object System.Management.Automation.PSCredential($env:EC2_USER, (ConvertTo-SecureString -String $env:EC2_SSH_KEY -AsPlainText -Force)))
+        
+        # Copy build output to target path
+        Copy-Item -Path './output/*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
+
+        # Restart your API service if needed
+        Invoke-Command -Session $session -ScriptBlock { Restart-Service -Name 'NotchApiService' } # Replace with actual service name
+
+        # End the session
+        Remove-PSSession -Session $session

@@ -5,6 +5,7 @@ on:
     branches: [ "Developement" ]
   pull_request:
     branches: [ "Developement" ]
+  workflow_dispatch:   # Manual trigger added
 
 jobs:
   build:
@@ -35,7 +36,7 @@ jobs:
       run: dotnet publish --configuration Release --output ./output
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4  
       with:
         name: dotnet-api
         path: ./output
@@ -45,7 +46,7 @@ jobs:
     needs: build
     steps:
     - name: Download build artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: dotnet-api
 

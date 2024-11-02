@@ -5,6 +5,7 @@ on:
     branches: [ "Developement" ]
   pull_request:
     branches: [ "Developement" ]
+  workflow_dispatch:   # Manual trigger added
 
 jobs:
   build:

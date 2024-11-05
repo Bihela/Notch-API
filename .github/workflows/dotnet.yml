@@ -74,13 +74,14 @@ jobs:
 
         # Debugging: Output current directory and contents before copying
         Get-Location
-        Get-ChildItem -Path './output' 
+        Get-ChildItem -Path 'D:\a\Notch-API\Notch-API\output'  # Update path here
 
         # Copy build artifacts to the target path on the EC2 instance
-        Copy-Item -Path './output/*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
+        Copy-Item -Path 'D:\a\Notch-API\Notch-API\output\*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
         
         # Restart the API service (replace 'NotchApiService' with the actual service name)
         Invoke-Command -Session $session -ScriptBlock { Restart-Service -Name 'NotchApiService' }
 
         # End the WinRM session
         Remove-PSSession -Session $session
+

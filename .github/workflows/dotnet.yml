@@ -36,13 +36,13 @@ jobs:
       run: dotnet publish --configuration Release --output ./output
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3  # Updated to v3
+      uses: actions/upload-artifact@v3
       with:
         name: dotnet-api
         path: ./output
 
   deploy:
-    runs-on: ubuntu-latest  # Use ubuntu-latest for SSH
+    runs-on: windows-latest
     needs: build
     steps:
     - name: Download build artifacts
@@ -50,21 +50,29 @@ jobs:
       with:
         name: dotnet-api
 
-    - name: Deploy to EC2 via SSH
+    - name: Configure TrustedHosts for WinRM
+      run: |
+        # Allow the EC2 instance to accept connections from GitHub Actions
+        Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value "${{ secrets.EC2_HOST }}" -Force
+
+    - name: Deploy to EC2 via WinRM
       env:
         EC2_HOST: ${{ secrets.EC2_HOST }}
         EC2_USER: ${{ secrets.EC2_USER }}
-        EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+        EC2_PASSWORD: ${{ secrets.EC2_PASSWORD }}
       run: |
-        # Create the SSH key file
-        echo "$EC2_SSH_KEY" > private_key.pem
-        chmod 600 private_key.pem
+        # Set up WinRM session credentials
+        $secPassword = ConvertTo-SecureString $env:EC2_PASSWORD -AsPlainText -Force
+        $credential = New-Object System.Management.Automation.PSCredential ($env:EC2_USER, $secPassword)
+        
+        # Start a WinRM session
+        $session = New-PSSession -ComputerName $env:EC2_HOST -Credential $credential
+        
+        # Copy build artifacts to the target path on the EC2 instance
+        Copy-Item -Path './output/*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
+        
+        # Restart the API service (replace 'NotchApiService' with the actual service name)
+        Invoke-Command -Session $session -ScriptBlock { Restart-Service -Name 'NotchApiService' }
 
-        # Copy files to EC2
-        scp -o StrictHostKeyChecking=no -i private_key.pem -r ./output/* $EC2_USER@$EC2_HOST:C:/inetpub/wwwroot/UATNotchAPI
-
-        # Restart the service
-        ssh -o StrictHostKeyChecking=no -i private_key.pem $EC2_USER@$EC2_HOST "powershell -Command 'Restart-Service -Name NotchApiService'"
-
-        # Cleanup
-        rm private_key.pem
+        # End the WinRM session
+        Remove-PSSession -Session $session

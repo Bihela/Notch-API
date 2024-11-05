@@ -73,9 +73,9 @@ jobs:
         $session = New-PSSession -ComputerName $env:EC2_HOST -Credential $credential
 
         # Debugging: Output current directory and contents before copying
-        Get-Location
-        Get-ChildItem -Path 'D:\a\Notch-API\Notch-API\output'  # Update path here
-
+        #Get-Location
+        #Get-ChildItem -Path 'D:\a\Notch-API\Notch-API\output' 
+        
         # Copy build artifacts to the target path on the EC2 instance
         Copy-Item -Path 'D:\a\Notch-API\Notch-API\output\*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
         

@@ -54,7 +54,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: dotnet-api
-        path: . # Download the artifact to the current working directory
+        path: .  # Download to current working directory
 
     - name: Configure TrustedHosts for WinRM
       run: |
@@ -75,7 +75,7 @@ jobs:
         $session = New-PSSession -ComputerName $env:EC2_HOST -Credential $credential
 
         # Copy build artifacts to the target path on the EC2 instance
-        Copy-Item -Path .\dotnet-api\* -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
+        Copy-Item -Path .\*.dll; .\*.exe; .\*.pdb -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
 
         # Restart the API service (replace 'NotchApiService' with the actual service name)
         Invoke-Command -Session $session -ScriptBlock { Restart-Service -Name 'NotchApiService' }

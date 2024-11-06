@@ -5,7 +5,7 @@ on:
     branches: [ "Developement" ]
   pull_request:
     branches: [ "Developement" ]
-  workflow_dispatch:   # Manual trigger added
+  workflow_dispatch: # Manual trigger added
 
 jobs:
   build:
@@ -33,9 +33,9 @@ jobs:
       run: dotnet test NotchApiTest/NotchApiTest.csproj --no-restore --verbosity normal
 
     - name: Publish
-      run: dotnet publish --configuration Release --output ./output  # Specify the output directory
+      run: dotnet publish --configuration Release --output ./output # Specify the output directory
 
-    - name: Check Output Directory  # Debugging step
+    - name: Check Output Directory (Debugging step)
       run: |
         ls -la ./output
 
@@ -43,11 +43,12 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-api
-        path: ./output/**  # Ensure the output files are included in the artifacts
+        path: ./output/** # Ensure the output files are included in the artifacts
 
   deploy:
     runs-on: windows-latest
     needs: build
+
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@v4
@@ -68,20 +69,21 @@ jobs:
         # Set up WinRM session credentials
         $secPassword = ConvertTo-SecureString $env:EC2_PASSWORD -AsPlainText -Force
         $credential = New-Object System.Management.Automation.PSCredential ($env:EC2_USER, $secPassword)
-        
+
         # Start a WinRM session
         $session = New-PSSession -ComputerName $env:EC2_HOST -Credential $credential
 
-        # Debugging: Output current directory and contents before copying
-        #Get-Location
-        #Get-ChildItem -Path 'D:\a\Notch-API\Notch-API\output' 
-        
+        # Get the actual path of downloaded artifacts (assuming a single artifact)
+        $artifactPath = (Get-ChildItem -Path .\dotnet-api).FullName
+
+        # Debugging: Print the artifact path
+        Write-Host "Artifact path: $artifactPath"
+
         # Copy build artifacts to the target path on the EC2 instance
-        Copy-Item -Path 'D:\a\Notch-API\Notch-API\output\*' -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
-        
+        Copy-Item -Path "$artifactPath" -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse
+
         # Restart the API service (replace 'NotchApiService' with the actual service name)
         Invoke-Command -Session $session -ScriptBlock { Restart-Service -Name 'NotchApiService' }
 
         # End the WinRM session
         Remove-PSSession -Session $session
-

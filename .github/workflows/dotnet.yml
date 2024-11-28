@@ -18,7 +18,7 @@ jobs:
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' # Specify your .NET version
+        dotnet-version: '8.0.x'
 
     - name: Restore dependencies
       run: dotnet restore
@@ -33,7 +33,7 @@ jobs:
       run: dotnet test NotchApiTest/NotchApiTest.csproj --no-restore --verbosity normal
 
     - name: Publish
-      run: dotnet publish --configuration Release --output ./output # Specify the output directory
+      run: dotnet publish --configuration Release --output ./output
 
     - name: Check Output Directory (Debugging step)
       run: |
@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-api
-        path: ./output/** # Ensure the output files are included in the artifacts
+        path: ./output/**
 
   deploy:
     runs-on: windows-latest
@@ -54,11 +54,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: dotnet-api
-        path: .  # Download to current working directory
+        path: .
 
     - name: Configure TrustedHosts for WinRM
       run: |
-        # Allow the EC2 instance to accept connections from GitHub Actions
         Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value "${{ secrets.EC2_HOST }}" -Force
 
     - name: Deploy to EC2 via WinRM
@@ -67,21 +66,29 @@ jobs:
         EC2_USER: ${{ secrets.EC2_USER }}
         EC2_PASSWORD: ${{ secrets.EC2_PASSWORD }}
       run: |
-        # Set up WinRM session credentials
         $secPassword = ConvertTo-SecureString $env:EC2_PASSWORD -AsPlainText -Force
         $credential = New-Object System.Management.Automation.PSCredential ($env:EC2_USER, $secPassword)
-
-        # Start a WinRM session
         $session = New-PSSession -ComputerName $env:EC2_HOST -Credential $credential
 
-        # Stop the service to prevent file locking
-        Invoke-Command -Session $session -ScriptBlock { Stop-Service -Name 'UATNotchApiService' -Force }
+        # Stop the service and wait for processes to release the files
+        Invoke-Command -Session $session -ScriptBlock {
+          Stop-Service -Name 'UATNotchApiService' -Force
+          
+          # Ensure all processes accessing files are terminated
+          Start-Sleep -Seconds 5  # Wait briefly for services to stop completely
+          $processes = Get-Process | Where-Object { $_.Modules.ModuleName -like '*NotchAPI*' } -ErrorAction SilentlyContinue
+          if ($processes) {
+            $processes | ForEach-Object { Stop-Process -Id $_.Id -Force }
+          }
+          Start-Sleep -Seconds 5  # Ensure processes are completely terminated
+        }
 
-        # Copy build artifacts to the target path on the EC2 instance
-        Copy-Item -Path .\* -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse -Force
+        # Copy build artifacts to the target path
+        Copy-Item -Path .\* -Destination 'C:\inetpub\wwwroot\UATNotchAPI' -ToSession $session -Recurse -Force -ErrorAction Stop
 
-        # Restart the service after deployment
-        Invoke-Command -Session $session -ScriptBlock { Start-Service -Name 'UATNotchApiService' }
+        # Restart the service
+        Invoke-Command -Session $session -ScriptBlock {
+          Start-Service -Name 'UATNotchApiService'
+        }
 
-        # End the WinRM session
         Remove-PSSession -Session $session

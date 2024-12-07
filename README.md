@@ -5,18 +5,23 @@ This project is an Employee Management API built using **ASP.NET Core** and **En
 ---
 
 ## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Database Setup](#database-setup)
+- [Features](#features)
+- [Installation](#installation)
+- [Controllers](#controllers)
+  - [Attendance Controller](#attendance-controller)
+  - [Department Controller](#department-controller)
+  - [Employee Controller](#employee-controller)
+  - [LeaveRequest Controller](#leaverequest-controller)
+  - [Salary Controller](#salary-controller)
+- [Database Models](#database-models)
+- [Technologies](#technologies)
+- [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Configurations](#configurations)
-- [Contributing](#contributing)
-- [License](#license)
+  - [Attendance Endpoints](#attendance-endpoints)
+  - [Department Endpoints](#department-endpoints)
+  - [Employee Endpoints](#employee-endpoints)
+  - [LeaveRequest Endpoints](#leaverequest-endpoints)
+  - [Salary Endpoints](#salary-endpoints)
 
 ---
 
@@ -48,17 +53,23 @@ The **Notch API** provides an efficient way to manage employee records, departme
 * **Configurations**
     * `DepartmentConfiguration.cs`
 * **Controllers**
-    * `AttendanceController.cs`
-    * `DepartmentController.cs`
-    * `EmployeeController.cs`
-    * `SalaryController.cs`
+  * **Attendance Controller:**
+    Manages employee attendance records, including present/absent status, late arrivals, and in/out times.
+  * **Department Controller:**
+    Handles CRUD operations for departments, including assigning employees to departments.
+  * **Employee Controller:**
+    Provides endpoints to manage employee data, including linking employees to departments.
+  * **LeaveRequest Controller:**
+    Handles employee leave requests, with functionality to approve, reject, and view requests based on status.
+  * **Salary Controller:**
+    Calculates and stores employee salary details, including net salary after bonuses and deductions.
 * **Data**
     * `EmployeeManagementContext.cs`
 * **Models**
     * `Attendance.cs`
     * `Department.cs`
     * `Employee.cs`
-    * `JobPerformance.cs`
+    * `LeaveRequest.cs`
     * `Salary.cs`
 * `Program.cs`
 * `appsettings.json`
